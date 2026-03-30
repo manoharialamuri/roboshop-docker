@@ -15,7 +15,6 @@ services:
       - redis
       - catalogue
 
-
   catalogue:
     build: ./catalogue
     image: manohari07/catalogue:1.0.0
