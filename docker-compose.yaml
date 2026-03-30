@@ -79,9 +79,9 @@ services:
       - catalogue
       - user
       - cart
-
-  
-
+      - shipping
+      - payment
+      
 networks:
   default:
     driver: bridge
