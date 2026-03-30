@@ -1,0 +1,11 @@
+services:
+  catalogue:
+    build: ./catalogue
+  image: manohari07/catalogue:1.0.0
+  container_name: catalogue
+  mongodb:
+    build: ./mongodb # it moves to mongodb directory
+  image: manohari07/mongodb:1.0.0 # docker build -t joindevops/mongodb:1.0.0
+  container_name: mongodb
+
+
