@@ -4,24 +4,24 @@ services:
     image: manohari07/user:1.0.0
     container_name: user
     depends_on:
-    - redis
-    - mongodb
+      - redis
+      - mongodb
 
   cart:
     build: ./cart
     image: manohari07/cart:1.0.0
     container_name: cart
     depends_on:
-    - redis
-    - catalogue
-    
+      - redis
+      - catalogue
+
 
   catalogue:
     build: ./catalogue
     image: manohari07/catalogue:1.0.0
     container_name: catalogue
     depends_on:
-    - mongodb
+      - mongodb
  
   mongodb:
     build: ./mongodb # it moves to mongodb directory
@@ -29,19 +29,19 @@ services:
     container_name: mongodb
 
   redis:
-  image: redis:7.0
-  container_name: redis
+    image: redis:7.0
+    container_name: redis
 
   frontend:
     build: ./frontend
     image: manohari07/mongodb:1.0.0
     container_name: frontend
     ports:
-    - "80:80"
+      - "80:80"
     depends_on:
-    - catalogue
-    - user
-    - cart
+      - catalogue
+      - user
+      - cart
 
   
 
