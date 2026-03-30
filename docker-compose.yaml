@@ -31,7 +31,7 @@ services:
       - mysql
       - cart
 
-  paymnet:
+  payment:
     build: ./payment
     image: manohari07/payment:1.0.0
     container_name: payment
