@@ -51,15 +51,21 @@ services:
     build: ./mongodb # it moves to mongodb directory
     image: manohari07/mongodb:1.0.0 # docker build -t joindevops/mongodb:1.0.0
     container_name: mongodb
+    volumes:
+    - mongodb:/data/db
 
   redis:
     image: redis:7.0
     container_name: redis
+    volumes:
+    - redis:/data
 
   mysql:
     build: ./mysql # it moves to mongodb directory
     image: manohari07/mysql:1.0.0 # docker build -t joindevops/mongodb:1.0.0
     container_name: mysql
+    volumes:
+    - mysql:/var/lib/mysql
 
   rabbitmq:
     image: rabbitmq:3
@@ -67,6 +73,8 @@ services:
       RABBITMQ_DEFAULT_USER: roboshop
       RABBITMQ_DEFAULT_PASS: roboshop123
     container_name: rabbitmq
+    volumes:
+    - rabbitmq:/var/lib/rabbitmq
 
   frontend:
     build: ./frontend
@@ -86,5 +94,12 @@ networks:
     driver: bridge
     name: roboshop
     external: false # if true, you need to create network manually
+
+volumes:
+  mongodb
+  redis
+  mysql
+  rabbitmq
+
 
 
