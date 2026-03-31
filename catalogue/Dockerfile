@@ -14,7 +14,7 @@ ENV MONGO=true \
     # Create a group and user
 #RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
-chown -R roboshop:roboshop /app
+RUN chown -R roboshop:roboshop /app
 CMD ["node", "server.js"]
 
 
