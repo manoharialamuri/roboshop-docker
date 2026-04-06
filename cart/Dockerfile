@@ -1,10 +1,31 @@
-FROM node:20
+FROM node:20.20.2-alpine3.23 AS builder
 # this creates /app and move there
 WORKDIR /app
 COPY package.json .
 COPY *.js .
 RUN npm install
-ENV REDIS_HOST=redis \
-    CATALOGUE_HOST=catalogue \
-    CATALOGUE_PORT=8080
-CMD ["node", "server.js"]
+
+FROM node:20.20.2-alpine3.23
+WORKDIR /app
+EXPOSE 8080
+COPY --from=builder /app /app
+# ENV MONGO=true \
+#     MONGO_URL="mongodb://mongodb:27017/catalogue"
+# Create a group and user
+#RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
+RUN chown -R roboshop:roboshop /app
+CMD ["server.js"]
+ENTRYPOINT ["node"]
+
+
+# FROM node:20
+# # this creates /app and move there
+# WORKDIR /app
+# COPY package.json .
+# COPY *.js .
+# RUN npm install
+# ENV REDIS_HOST=redis \
+#     CATALOGUE_HOST=catalogue \
+#     CATALOGUE_PORT=8080
+# CMD ["node", "server.js"]
